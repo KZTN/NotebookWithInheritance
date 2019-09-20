@@ -1,5 +1,5 @@
 <?php
-class Contato {
+abstract class Contato {
     private $nome;
     private $endereco;
     private $email;
@@ -19,5 +19,6 @@ class Contato {
     public function detalhar() : void {
         echo ("Nome: {$this->nome}\nEndereço: {$this->Endereco}\nEmail: {$this->email}\nContato: {$this->contato}\n");
     }
+    abstract public function match($termo) : bool;
 }
 ?>
