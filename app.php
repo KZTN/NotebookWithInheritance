@@ -1,9 +1,12 @@
 <?php
 require_once("PessoaFisica.php");
 require_once("PessoaJuridica.php");
+require_once("Agenda.php");
 $agenda = new Agenda();
-$op = readline("Bem-vindo a sua agenda\nEscolha uma das opções\n0: Sair\t1: Listar\t2: Adicionar\t3: Remover\t4: Pesquisar\n");
+$op = -1;
 do {
+    echo("Bem-vindo a sua agenda\nEscolha uma das opções\n0: Sair\t1: Listar\t2: Adicionar\t3: Remover\t4: Pesquisar\n");
+    $op = readline("");
     switch ($op) {
         case 1:
             $agenda->listaContatos();
@@ -14,10 +17,10 @@ do {
             $endereco = readline("Informe o endereço\n");
             $email = readline("Informe o email\n");
             $contato = readline("Informe o Contato\n");
-            $op2 = readline("Informe o tipo de pessoa(1: jurídica 2: física)\n");
+            $op2 = readline("Informe o tipo de pessoa(1: física 2: juridica)\n");
             if($op2 == 1) {
                 $CPF = readline("Informe o CPF\n");
-                $estadoCivil = readline("Informe o estado cifilF\n");
+                $estadoCivil = readline("Informe o estado civil\n");
                 $dataNascimento = readline("Informe a data de nascimento\n");
                 $agenda->adicionaContato(new PessoaFisica($CPF, $estadoCivil, $dataNascimento, $nome, $endereco, $email, $contato));
             } elseif($op2 == 2) {
@@ -31,23 +34,21 @@ do {
             }
             break;
         case 3:
-            $agenda->listarContatos();
-            $termo = readline("Informe nome, cpf ou cnpj do contato para ser removido\n");
-            $contatos = $agenda->Pesquisar($termo);
+            $agenda->listaContatos();
+            $termo = readline("Informe nome, cpf ou cnpj do contato a ser removido\n");
+            $contatos = $agenda->buscaContato($termo);
             echo("Resultado da pesquisa\n---------\n");
             foreach ($contatos as $contato) {
-                $agenda->removerContato($contato);
+                $agenda->removeContato($contato);
             }
-            echo("----------\n");
             break;
         case 4:
-            $termo = readline("Informe nome, cpf ou cnpj do contato para ser removido\n");
-            $contatos = $agenda->Pesquisar($termo);
+            $termo = readline("Informe nome, cpf ou cnpj do contato a ser pesquisado\n");
+            $contatos = $agenda->buscaContato($termo);
             echo("Resultado da pesquisa\n---------\n");
             foreach ($contatos as $contato) {
                 $contato->detalhar();
             }
-            echo("----------\n");
             break;
         case 0:
             echo("fim de programa");

@@ -17,7 +17,7 @@ abstract class Contato {
         $this->{$propiedade} = $new;
     }
     public function detalhar() : void {
-        echo ("Nome: {$this->nome}\nEndereço: {$this->Endereco}\nEmail: {$this->email}\nContato: {$this->contato}\n");
+        echo ("Nome: {$this->nome}\nEndereço: {$this->endereco}\nEmail: {$this->email}\nContato: {$this->contato}\n");
     }
     abstract public function match($termo) : bool;
 }

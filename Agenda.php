@@ -5,30 +5,28 @@ require_once("PessoaFisica.php");
 class Agenda {
     private $contatos;
     public function __construct() {
-        $this->contatos = [];
+        $this->contatos = array();
     }
     public function adicionaContato(Contato $contato) : void {
-        $this->contatos=$contato;
+        array_push($this->contatos, $contato);
     }
     public function removeContato(Contato $contato) : void {
         $indice = array_search($contato, $this->contatos);
-        if($indice !== false) {
-            array_splice($this->contatos, $indice, 0);
-        }
+        array_splice($this->contatos, $indice, 1);
     }
     public function listaContatos() : void {
-        foreach($this->contattos as $contato) {
+        foreach($this->contatos as $contato) {
             $contato->detalhar();
         }
     }
     public function buscaContato(string $termo) : array {
-        $contatos = array();
+        $contatosEncontrados = array();
         foreach ($this->contatos as $contato) {
             if($contato->match($termo)){
-                array_push($contatos, $contato);
+                array_push($contatosEncontrados, $contato);
             }
         }
-        return $contato;
+        return $contatosEncontrados;
     }
 }
 ?>

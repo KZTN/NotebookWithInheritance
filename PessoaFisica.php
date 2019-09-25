@@ -9,14 +9,15 @@ class PessoaFisica extends Contato {
         $this->CPF = $CPF;
         $this->estadoCivil = $estadoCivil;
         $this->dataNascimento = $dataNascimento;
-        parent::__construct($nome, $endereco, $contato);
+        parent::__construct($nome, $endereco, $email, $contato);
     }
     public function match($termo) : bool { 
         return $termo == $this->get('nome') || $termo == $this->CPF;
     }
     public function detalhar() : void {
+        echo("----------\n");
         parent::detalhar();
-        echo("CPF: {$this->CPF}\eEstado Civil: {$this->estadoCivil}\Data Nascimento: {$this->dataNascimento}");
+        echo("CPF: {$this->CPF}\nEstado Civil: {$this->estadoCivil}\nData Nascimento: {$this->dataNascimento}\n");
     }
 }
 ?>

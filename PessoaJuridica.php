@@ -15,8 +15,9 @@ class PessoaJuridica extends Contato {
         return $termo == $this->get('nome') || $termo == $this->CNPJ;
     }
     public function detalhar() : void {
+        echo("----------\n");
         parent::detalhar();
-        echo("CNPJ: {$this->CNPJ}\nInscrição Estadual: {$this->inscricaoEstadual}\nRazão Social: {$this->razaoSocial}");
+        echo("CNPJ: {$this->CNPJ}\nInscrição Estadual: {$this->inscricaoEstadual}\nRazão Social: {$this->razaoSocial}\n");
     }
 }
 ?>
