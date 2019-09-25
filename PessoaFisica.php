@@ -12,7 +12,7 @@ class PessoaFisica extends Contato {
         parent::__construct($nome, $endereco, $email, $contato);
     }
     public function match($termo) : bool { 
-        return $termo == $this->get('nome') || $termo == $this->CPF;
+        return $termo == parent::get('nome') || $termo == $this->CPF;
     }
     public function detalhar() : void {
         echo("----------\n");

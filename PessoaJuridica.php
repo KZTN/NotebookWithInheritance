@@ -12,7 +12,7 @@ class PessoaJuridica extends Contato {
         parent::__construct($nome, $endereco, $email, $contato);
     }
     public function match($termo) : bool { 
-        return $termo == $this->get('nome') || $termo == $this->CNPJ;
+        return $termo == parent::get('nome') || $termo == $this->CNPJ;
     }
     public function detalhar() : void {
         echo("----------\n");

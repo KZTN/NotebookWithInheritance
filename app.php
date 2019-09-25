@@ -11,8 +11,7 @@ do {
         case 1:
             $agenda->listaContatos();
             break;
-        case 2:
-            
+        case 2:   
             $nome = readline("Informe o nome\n");
             $endereco = readline("Informe o endereço\n");
             $email = readline("Informe o email\n");
