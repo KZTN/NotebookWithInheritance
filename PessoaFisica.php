@@ -1,9 +1,9 @@
 <?php
 require_once("Contato.php");
 class PessoaFisica extends Contato {
-    private $CPF;
-    private $estadoCivil;
-    private $dataNascimento;
+    protected $CPF;
+    protected $estadoCivil;
+    protected $dataNascimento;
     
     public function __construct(string $CPF, string $estadoCivil, string $dataNascimento, string $nome, string $endereco, string $email, string $contato) {
         $this->CPF = $CPF;

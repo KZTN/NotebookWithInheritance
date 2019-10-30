@@ -1,9 +1,9 @@
 <?php
 require_once("Contato.php");
 class PessoaJuridica extends Contato {
-    private $CNPJ;
-    private $inscricaoEstadual;
-    private $razaoSocial;
+    protected $CNPJ;
+    protected $inscricaoEstadual;
+    protected $razaoSocial;
 
     public function __construct(string $CNPJ, string $inscricaoEstadual, string $razaoSocial, string $nome, string $endereco, string $email, string $contato) {
         $this->CNPJ = $CNPJ;

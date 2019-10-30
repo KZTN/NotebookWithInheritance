@@ -7,6 +7,9 @@ class Agenda {
     public function __construct() {
         $this->contatos = array();
     }
+    public function getContatos() : array {
+        return $this->contatos;
+    }
     public function adicionaContato(Contato $contato) : void {
         array_push($this->contatos, $contato);
     }
@@ -27,6 +30,27 @@ class Agenda {
             }
         }
         return $contatosEncontrados;
+    }
+    public static function serializar(Agenda $agenda) : void {
+        // begin serialização
+        $file = fopen("agenda.data", "w");
+        $content = serialize($agenda);
+        fwrite($file, $content);
+        fclose($file);
+        // end
+    }
+    public static function desserializar() : Agenda {
+        if (file_exists("agenda.data")) {
+            // begin desserialização...
+            $file = fopen("agenda.data", 'r');
+            $content = fread($file, filesize("agenda.data"));
+            $agenda = unserialize($content);
+            fclose($file);
+            return $agenda;
+            // end
+        } else {
+            return new Agenda();
+        }
     }
 }
 ?>

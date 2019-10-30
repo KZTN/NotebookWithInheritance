@@ -2,7 +2,16 @@
 require_once("PessoaFisica.php");
 require_once("PessoaJuridica.php");
 require_once("Agenda.php");
-$agenda = new Agenda();
+if (file_exists("agenda.data")) {
+    // begin desserialização...
+    $file = fopen("agenda.data", 'r');
+    $content = fread($file, filesize("agenda.data"));
+    $agenda = unserialize($content);
+    fclose($file);
+    // end
+} else {
+    $agenda = new Agenda();
+}
 $op = -1;
 do {
     echo("Bem-vindo a sua agenda\nEscolha uma das opções\n0: Sair\t1: Listar\t2: Adicionar\t3: Remover\t4: Pesquisar\n");
@@ -50,11 +59,17 @@ do {
             }
             break;
         case 0:
-            echo("fim de programa");
+            echo("fim de programa\n");
+            // begin serialização
+            $file = fopen("agenda.data", "w");
+            $content = serialize($agenda);
+            fwrite($file, $content);
+            fclose($file);
+            // end
             return;
             break;
         default:
-            # code...
+            echo("Escolha uma opção válida.\n");
             break;
     }
 } while($op!=0);
